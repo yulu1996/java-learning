@@ -1,0 +1,36 @@
+server:
+  port: 8010
+
+spring:
+  application:
+    name: springcloud-config
+  profiles:
+    active: prod
+
+
+---
+spring:
+  profiles: dev
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/yulu1996/demo
+          search-paths: /**
+          password: ${config.server.git.pwd}
+          username: ${config.server.git.user}
+      label: ${config.server.git.label}
+
+---
+spring:
+  profiles: prod
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/yulu1996/demo
+          search-paths: /**
+          password: ${config.server.git.pwd}
+          username: ${config.server.git.user}
+      label: ${config.server.git.label}
+
